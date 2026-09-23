@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en" data-title-en="KK Knock — Hands full? Just say it." data-title-zh="KK Knock — 手上正忙？说出来就好。">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KK Knock — Hands full? Just say it.</title>
+  <meta name="description" content="KK Knock is a voice-first capture app for Android. Tap the KK Capture widget, say what's on your mind, and it becomes a Todo with a due time or a researched Thought. 手上正忙？点一下桌面上的 KK Capture 说出来，自动整理成待办或想法。">
+  <meta name="theme-color" content="#F8F7F3">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KK Knock — Hands full? Just say it.">
+  <meta property="og:description" content="Tap the KK Capture widget, say it, and it's sorted into a Todo or a researched Thought — transcribed on your phone.">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/SourceSerif4-Semibold.ttf?v=1" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css?v=1">
+  <script src="/assets/js/lang-init.js?v=1"></script>
+  <script src="/assets/js/site.js?v=1" defer></script>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 3.5a3 3 0 0 0-3 3v5.5a3 3 0 0 0 6 0V6.5a3 3 0 0 0-3-3z"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.5"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M5.5 15 7 9.8a2 2 0 0 1 1.9-1.4h6.2A2 2 0 0 1 17 9.8l1.5 5.2"/><rect x="3.5" y="15" width="17" height="4.5" rx="1.6"/><path d="M6.5 19.5V21M17.5 19.5V21M7.5 17.2h.01M16.5 17.2h.01"/></symbol>
+  <symbol id="i-basket" viewBox="0 0 24 24"><path d="M3.8 10h16.4l-1.7 8.2a2 2 0 0 1-2 1.6H7.5a2 2 0 0 1-2-1.6z"/><path d="M8.5 10 11 4.5M15.5 10 13 4.5M9.5 13.5v3M14.5 13.5v3"/></symbol>
+  <symbol id="i-pan" viewBox="0 0 24 24"><circle cx="10" cy="14.5" r="5.5"/><path d="M15.5 14.5h5M8 7c.7-.9.7-1.8 0-2.7M11.5 7c.7-.9.7-1.8 0-2.7"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V6a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 6v1.5M3.5 12.5h17"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 4 2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 16.4l-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14.5" rx="2"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+  <symbol id="i-text" viewBox="0 0 24 24"><path d="M5 6.5h14M5 10.5h14M5 14.5h9M5 18.5h6"/></symbol>
+  <symbol id="i-cloud-off" viewBox="0 0 24 24"><path d="M8 18h9a4 4 0 0 0 .9-7.9A6 6 0 0 0 7.2 8.6M5.6 10.2A4.2 4.2 0 0 0 7.5 18"/><path d="m4 4 16 16"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24"><path d="m4.5 19.5 1-4L16 5a2.1 2.1 0 0 1 3 3L8.5 18.5z"/><path d="m14 7 3 3"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6.5 13.5 12 19l5.5-5.5"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3.5 13.8 9l5.7 2-5.7 2-1.8 5.5-1.8-5.5-5.7-2 5.7-2z"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M4 11v2M7.5 8.5v7M11 5.5v13M14.5 8.5v7M18 10v4"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M3 15.5h3v4H3zM8 12h3v7.5H8zM13 8.5h3v11h-3zM18 5h3v14.5h-3z"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M3 9.2a13.5 13.5 0 0 1 18 0M6 12.6a9 9 0 0 1 12 0M9 16a4.5 4.5 0 0 1 6 0"/><path fill="currentColor" stroke="none" d="M12 20.2a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8z"/></symbol>
+  <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2.5" y="7" width="17.5" height="10" rx="2.6"/><path fill="currentColor" stroke="none" d="M4.8 9.3h11.5v5.4H4.8z"/><path d="M22 10.5v3"/></symbol>
+</svg>
+
+<a class="skip" href="#main"><span lang="en">Skip to content</span><span lang="zh-CN">跳到正文</span></a>
+
+<header class="nav" id="top">
+  <div class="nav__inner container">
+    <a class="brand" href="#top" aria-label="KK Knock">
+      <img class="brand__icon" src="/assets/img/brand/icon-128.png" width="36" height="36" alt="">
+      <span class="brand__name">KK&nbsp;Knock</span>
+    </a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#moments"><span lang="en">Moments</span><span lang="zh-CN">场景</span></a>
+      <a href="#capture">KK&nbsp;Capture</a>
+      <a href="#features"><span lang="en">Features</span><span lang="zh-CN">功能</span></a>
+      <a href="#privacy"><span lang="en">Privacy</span><span lang="zh-CN">隐私</span></a>
+      <a href="#faq"><span lang="en">FAQ</span><span lang="zh-CN">问答</span></a>
+    </nav>
+    <div class="nav__actions">
+      <div class="lang-toggle" role="group" aria-label="Language / 语言">
+        <button type="button" data-set-lang="en">EN</button>
+        <button type="button" data-set-lang="zh">中文</button>
+      </div>
+      <a class="btn btn--primary btn--small" href="/download">
+        <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+        <span lang="en">Download</span><span lang="zh-CN">下载</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__inner container">
+      <div class="hero__copy">
+        <p class="eyebrow eyebrow--serif">
+          <span lang="en">catching your bubbling thoughts</span><span lang="zh-CN">接住每一个冒出来的想法</span>
+        </p>
+        <h1 class="display">
+          <span lang="en">Hands full?<br>Just say it.</span>
+          <span lang="zh-CN">手上正忙？<br>说出来就好。</span>
+        </h1>
+        <p class="lead">
+          <span lang="en">On the road, in the grocery aisle, at the stove — tap KK&nbsp;Capture on your home screen and say what's on your mind. KK&nbsp;Knock turns it into a Todo with a due time, or a Thought it researches and writes up for you.</span>
+          <span lang="zh-CN">路上、超市里、灶台边，想到什么，点一下桌面上的 KK&nbsp;Capture 说出来。KK&nbsp;Knock 会把它整理成带截止时间的待办，或者帮你查好资料、写成一篇的想法。</span>
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--large" href="/download">
+            <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+            <span lang="en">Download for Android</span><span lang="zh-CN">下载 Android 版</span>
+          </a>
+          <a class="btn btn--ghost btn--large" href="#capture">
+            <span lang="en">See how it works</span><span lang="zh-CN">看看怎么用</span>
+          </a>
+        </div>
+        <p class="hero__note">
+          <span lang="en">Android 7.0 or later · Free download from GitHub Releases</span>
+          <span lang="zh-CN">Android 7.0 及以上 · 通过 GitHub Releases 免费下载</span>
+        </p>
+      </div>
+
+      <div class="hero__stage" aria-hidden="true">
+        <div class="phone phone--hero">
+          <div class="phone__screen">
+            <div class="phone__status"><span class="phone__time">9:41</span><span class="phone__cam"></span><span class="phone__icons"><svg><use href="#i-signal"/></svg><svg><use href="#i-wifi"/></svg><svg><use href="#i-battery"/></svg></span></div>
+            <img lang="en" src="/assets/img/screens/en/recording.jpg" width="720" height="1503" loading="lazy" alt="">
+            <img lang="zh-CN" src="/assets/img/screens/zh/recording.jpg" width="720" height="1503" loading="lazy" alt="">
+          </div>
+        </div>
+        <div class="float-widget">
+          <div class="capture-icon capture-icon--cycle">
+            <img class="capture-icon__state capture-icon__state--idle" src="/assets/img/capture/idle.png" width="300" height="300" alt="">
+            <img class="capture-icon__state capture-icon__state--recording" src="/assets/img/capture/recording.png" width="300" height="300" alt="">
+            <img class="capture-icon__state capture-icon__state--processing" src="/assets/img/capture/processing.png" width="300" height="300" alt="">
+            <span class="tap-ring"></span>
+          </div>
+          <span class="float-widget__label">KK&nbsp;Capture</span>
+        </div>
+        <div class="float-card">
+          <p class="float-card__head"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span lang="en">Saved to Todo</span><span lang="zh-CN">已存为待办</span></p>
+          <div class="app-row app-row--compact">
+            <span class="app-row__check"></span>
+            <span class="app-row__body">
+              <span class="app-row__title"><span lang="en">Pick up the dry cleaning</span><span lang="zh-CN">取干洗的衣服</span></span>
+              <span class="app-row__meta" data-due="1@18:00"><span lang="en">Tomorrow · 6:00 PM</span><span lang="zh-CN">明天 18:00</span></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Busy moments -->
+  <section class="section" id="moments">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span lang="en">Busy moments</span><span lang="zh-CN">忙碌时刻</span></p>
+        <h2 class="title"><span lang="en">For the moments you can't type</span><span lang="zh-CN">不方便打字的时候</span></h2>
+        <p class="lead">
+          <span lang="en">Tasks and ideas rarely wait for a free hand. Say them the moment they show up — KK&nbsp;Knock sorts them out for you.</span>
+          <span lang="zh-CN">要做的事和冒出来的想法，很少挑你有空的时候出现。想到就说，剩下的交给 KK&nbsp;Knock。</span>
+        </p>
+      </header>
+
+      <div class="moments">
+        <article class="moment reveal">
+          <div class="moment__top">
+            <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg></span>
+            <div>
+              <h3 class="moment__title"><span lang="en">In the car</span><span lang="zh-CN">在车上</span></h3>
+              <p class="moment__context"><span lang="en">Just parked, and it hits you.</span><span lang="zh-CN">刚停好车，突然想起来。</span></p>
+            </div>
+          </div>
+          <p class="said"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg><span lang="en">“Pick up the dry cleaning tomorrow before six.”</span><span lang="zh-CN">“明天六点前去取干洗的衣服。”</span></p>
+          <svg class="moment__arrow" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+          <div class="app-row">
+            <span class="app-row__check"></span>
+            <span class="app-row__body">
+              <span class="app-row__title"><span lang="en">Pick up the dry cleaning</span><span lang="zh-CN">取干洗的衣服</span></span>
+              <span class="app-row__meta" data-due="1@18:00"><span lang="en">Tomorrow · 6:00 PM</span><span lang="zh-CN">明天 18:00</span></span>
+            </span>
+            <svg class="app-row__icon" aria-hidden="true"><use href="#i-star"/></svg>
+            <svg class="app-row__icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+          </div>
+          <p class="moment__note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><span lang="en">Only when parked or safely stopped — never handle your phone while driving.</span><span lang="zh-CN">请在停车或安全停靠时使用，驾驶中请勿操作手机。</span></p>
+        </article>
+
+        <article class="moment reveal">
+          <div class="moment__top">
+            <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-basket"/></svg></span>
+            <div>
+              <h3 class="moment__title"><span lang="en">At the grocery store</span><span lang="zh-CN">买菜的时候</span></h3>
+              <p class="moment__context"><span lang="en">One hand on the cart, one on the bags.</span><span lang="zh-CN">一手推车，一手拎菜。</span></p>
+            </div>
+          </div>
+          <p class="said"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg><span lang="en">“Buy oat milk and eggs on the way home tonight.”</span><span lang="zh-CN">“今晚回家路上买燕麦奶和鸡蛋。”</span></p>
+          <svg class="moment__arrow" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+          <div class="app-row">
+            <span class="app-row__check"></span>
+            <span class="app-row__body">
+              <span class="app-row__title"><span lang="en">Buy oat milk and eggs</span><span lang="zh-CN">买燕麦奶和鸡蛋</span></span>
+              <span class="app-row__meta" data-due="tonight@19:00"><span lang="en">Today · 7:00 PM</span><span lang="zh-CN">今天 19:00</span></span>
+            </span>
+            <svg class="app-row__icon" aria-hidden="true"><use href="#i-star"/></svg>
+            <svg class="app-row__icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+          </div>
+        </article>
+
+        <article class="moment reveal">
+          <div class="moment__top">
+            <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-pan"/></svg></span>
+            <div>
+              <h3 class="moment__title"><span lang="en">Cooking, or with the kids</span><span lang="zh-CN">做饭、带娃的时候</span></h3>
+              <p class="moment__context"><span lang="en">A question pops up and there's no time to look it up.</span><span lang="zh-CN">突然冒出一个问题，却腾不出手去查。</span></p>
+            </div>
+          </div>
+          <p class="said"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg><span lang="en">“Which plants survive in a dim kitchen?”</span><span lang="zh-CN">“厨房光线暗，养什么绿植好活？”</span></p>
+          <svg class="moment__arrow" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+          <div class="app-row app-row--thought">
+            <span class="app-row__body">
+              <span class="app-row__title"><span lang="en">Plants that survive a dim kitchen</span><span lang="zh-CN">适合昏暗厨房的绿植</span></span>
+              <span class="app-row__preview"><span lang="en">Pothos, ZZ plant and snake plant all tolerate low light and irregular watering…</span><span lang="zh-CN">绿萝、金钱树和虎尾兰都耐阴、耐旱，适合没有直射阳光的厨房角落…</span></span>
+              <span class="app-row__chips"><span class="chip"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg><span lang="en">Researched</span><span lang="zh-CN">已研究</span></span><span class="chip"><span lang="en">3 sources</span><span lang="zh-CN">3 个来源</span></span></span>
+            </span>
+          </div>
+        </article>
+
+        <article class="moment reveal">
+          <div class="moment__top">
+            <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></span>
+            <div>
+              <h3 class="moment__title"><span lang="en">Between meetings</span><span lang="zh-CN">会议间隙、通勤路上</span></h3>
+              <p class="moment__context"><span lang="en">You remember it now — and would forget it by tonight.</span><span lang="zh-CN">现在想起来了，晚上多半就忘了。</span></p>
+            </div>
+          </div>
+          <p class="said"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg><span lang="en">“Call the landlord about the heater Monday morning.”</span><span lang="zh-CN">“下周一早上给房东打电话说暖气的事。”</span></p>
+          <svg class="moment__arrow" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+          <div class="app-row">
+            <span class="app-row__check"></span>
+            <span class="app-row__body">
+              <span class="app-row__title"><span lang="en">Call the landlord about the heater</span><span lang="zh-CN">给房东打电话说暖气的事</span></span>
+              <span class="app-row__meta" data-due="mon@09:00"><span lang="en">Monday · 9:00 AM</span><span lang="zh-CN">周一 09:00</span></span>
+            </span>
+            <svg class="app-row__icon" aria-hidden="true"><use href="#i-star"/></svg>
+            <svg class="app-row__icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+          </div>
+        </article>
+      </div>
+      <p class="footnote reveal">
+        <span lang="en">Examples show typical results. Each recording becomes one Todo or one Thought.</span>
+        <span lang="zh-CN">示例为典型结果。每条录音会整理成一条待办或一条想法。</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- KK Capture 1×1 -->
+  <section class="section section--sunken" id="capture">
+    <div class="container capture">
+      <div class="capture__demo reveal" aria-hidden="true">
+        <div class="homescreen">
+          <div class="homescreen__clock">9:41</div>
+          <div class="homescreen__date"><span lang="en">Tuesday</span><span lang="zh-CN">星期二</span></div>
+          <div class="homescreen__grid">
+            <span class="app-dot"></span><span class="app-dot"></span><span class="app-dot"></span><span class="app-dot"></span>
+            <span class="app-dot"></span>
+            <div class="homescreen__widget">
+              <div class="capture-icon capture-icon--cycle">
+                <img class="capture-icon__state capture-icon__state--idle" src="/assets/img/capture/idle.png" width="300" height="300" alt="" loading="lazy">
+                <img class="capture-icon__state capture-icon__state--recording" src="/assets/img/capture/recording.png" width="300" height="300" alt="" loading="lazy">
+                <img class="capture-icon__state capture-icon__state--processing" src="/assets/img/capture/processing.png" width="300" height="300" alt="" loading="lazy">
+                <span class="tap-ring"></span>
+              </div>
+              <span class="homescreen__label">KK&nbsp;Capture</span>
+            </div>
+            <span class="app-dot"></span><span class="app-dot"></span>
+            <span class="app-dot"></span><span class="app-dot"></span><span class="app-dot"></span><span class="app-dot"></span>
+          </div>
+          <div class="homescreen__caption">
+            <span class="caption caption--idle"><span lang="en">Ready · tap to record</span><span lang="zh-CN">就绪 · 点一下开始录音</span></span>
+            <span class="caption caption--recording"><span lang="en">Recording · tap again to stop</span><span lang="zh-CN">录音中 · 再点一下结束</span></span>
+            <span class="caption caption--processing"><span lang="en">Processing in the background</span><span lang="zh-CN">后台处理中</span></span>
+          </div>
+          <div class="homescreen__dock"><span class="app-dot"></span><span class="app-dot"></span><span class="app-dot"></span><span class="app-dot"></span></div>
+        </div>
+      </div>
+
+      <div class="capture__copy">
+        <header class="section__head section__head--left reveal">
+          <p class="eyebrow">KK&nbsp;Capture · 1×1</p>
+          <h2 class="title"><span lang="en">One tap from your home screen</span><span lang="zh-CN">桌面上，一点就录</span></h2>
+          <p class="lead">
+            <span lang="en">KK&nbsp;Capture is a 1×1 widget. Tap it to start recording and tap again to stop — you never have to open the app.</span>
+            <span lang="zh-CN">KK&nbsp;Capture 是一个 1×1 桌面小组件。点一下开始录音，再点一下结束，全程不用打开 App。</span>
+          </p>
+        </header>
+
+        <ol class="states reveal">
+          <li class="state state--idle">
+            <img class="state__art" src="/assets/img/capture/idle.png" width="300" height="300" loading="lazy" alt="">
+            <div>
+              <h3 class="state__name"><span lang="en">Ready</span><span lang="zh-CN">就绪</span></h3>
+              <p><span lang="en">Gold waveform. Tap once to start; a short beep and vibration confirm it (not in silent mode).</span><span lang="zh-CN">金色声波。点一下开始录音，会有提示音和轻微震动确认（静音模式下不响）。</span></p>
+            </div>
+          </li>
+          <li class="state state--recording">
+            <img class="state__art" src="/assets/img/capture/recording.png" width="300" height="300" loading="lazy" alt="">
+            <div>
+              <h3 class="state__name"><span lang="en">Recording</span><span lang="zh-CN">录音中</span></h3>
+              <p><span lang="en">Red waveform. Say it in your own words. Tap again to stop, or it stops by itself after 60 seconds.</span><span lang="zh-CN">红色声波。用自己的话说出来。再点一下结束，满 60 秒也会自动停止。</span></p>
+            </div>
+          </li>
+          <li class="state state--processing">
+            <img class="state__art" src="/assets/img/capture/processing.png" width="300" height="300" loading="lazy" alt="">
+            <div>
+              <h3 class="state__name"><span lang="en">Processing</span><span lang="zh-CN">处理中</span></h3>
+              <p><span lang="en">A small ring while it transcribes and sorts in the background, then it's back to Ready. Thought of something else? Tap again — the next recording starts right away.</span><span lang="zh-CN">右下角出现小圆环，表示正在后台转写和整理，完成后回到就绪。又想到一件事？直接再点，下一条马上开始录。</span></p>
+            </div>
+          </li>
+        </ol>
+        <p class="capture__add reveal">
+          <strong><span lang="en">Add it</span><span lang="zh-CN">添加方法</span></strong>
+          <span lang="en">Touch and hold an empty spot on your home screen → Widgets → KKKnockBoost → KK&nbsp;Capture.</span>
+          <span lang="zh-CN">长按桌面空白处 → 小组件 → KKKnockBoost → KK&nbsp;Capture。</span>
+        </p>
+        <p class="footnote footnote--left reveal">
+          <span lang="en">If a capture can't be processed, a small “!” appears on the icon; retry it from Recent Captures in the app.</span>
+          <span lang="zh-CN">如果某条捕捉处理失败，图标上会出现小“!”，可以在 App 的“最近捕捉”里重试。</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What happens next -->
+  <section class="section" id="how">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span lang="en">One tap. Speak. Done.</span><span lang="zh-CN">一按。开口。完成。</span></p>
+        <h2 class="title"><span lang="en">Then it sorts itself out</span><span lang="zh-CN">说完，剩下的自动完成</span></h2>
+      </header>
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-wave"/></svg></span>
+          <h3><span lang="en">Transcribed on your phone</span><span lang="zh-CN">在手机上转写</span></h3>
+          <p><span lang="en">Speech-to-text runs on the phone with Whisper. Your audio is never uploaded.</span><span lang="zh-CN">语音转文字由 Whisper 在手机上完成，录音不会上传。</span></p>
+        </li>
+        <li class="step reveal">
+          <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg></span>
+          <h3><span lang="en">Sorted by AI</span><span lang="zh-CN">AI 自动分类</span></h3>
+          <p><span lang="en">The text becomes a Todo — with the time you mentioned as its due time — or a Thought. If there's nothing to keep, nothing is created.</span><span lang="zh-CN">文字会被整理成待办（你说的时间会记成截止时间）或想法；内容不足以整理时，不会生成任何条目。</span></p>
+        </li>
+        <li class="step reveal">
+          <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-text"/></svg></span>
+          <h3><span lang="en">Thoughts get researched</span><span lang="zh-CN">想法会被研究</span></h3>
+          <p><span lang="en">A Thought comes back with a summary, a short write-up, pros and risks, a recommendation and sources.</span><span lang="zh-CN">想法会附上摘要、整理好的正文、优点和风险、建议以及参考来源。</span></p>
+        </li>
+        <li class="step reveal">
+          <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+          <h3><span lang="en">Saved on your phone</span><span lang="zh-CN">保存在你的手机上</span></h3>
+          <p><span lang="en">Results are stored on the phone. As soon as the transcript is ready, you can record the next one.</span><span lang="zh-CN">结果保存在手机本地。转写一完成，就可以马上录下一条。</span></p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section section--white" id="features">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span lang="en">Features</span><span lang="zh-CN">功能</span></p>
+        <h2 class="title"><span lang="en">Everything lands where it belongs</span><span lang="zh-CN">每件事都有它的位置</span></h2>
+      </header>
+
+      <div class="feature">
+        <div class="feature__copy reveal">
+          <h3 class="feature__title"><span lang="en">Todos that keep up with you</span><span lang="zh-CN">跟得上你的待办</span></h3>
+          <ul class="ticks">
+            <li><span lang="en">Say “tomorrow before six” and it becomes the due time.</span><span lang="zh-CN">说“明天六点前”，就记成截止时间。</span></li>
+            <li><span lang="en">Filter by Today, Next 7 days, Overdue or Completed, and search by title.</span><span lang="zh-CN">按今天、未来 7 天、已逾期、已完成筛选，也能按标题搜索。</span></li>
+            <li><span lang="en">Star what matters and check things off with one tap.</span><span lang="zh-CN">给重要的事加星标，点一下就能完成。</span></li>
+            <li><span lang="en">Timed todos can show up in a local calendar on your phone.</span><span lang="zh-CN">带时间的待办可以同步到手机本地日历。</span></li>
+          </ul>
+        </div>
+        <div class="feature__visual reveal">
+          <div class="duo">
+            <div class="phone"><div class="phone__screen">
+              <div class="phone__status"><span class="phone__time">9:41</span><span class="phone__cam"></span><span class="phone__icons"><svg><use href="#i-signal"/></svg><svg><use href="#i-wifi"/></svg><svg><use href="#i-battery"/></svg></span></div>
+              <img lang="en" src="/assets/img/screens/en/home_todo.jpg" width="720" height="1503" loading="lazy" alt="Todo list with filters, due times and a starred item">
+              <img lang="zh-CN" src="/assets/img/screens/zh/home_todo.jpg" width="720" height="1503" loading="lazy" alt="待办列表：筛选、截止时间和星标">
+            </div></div>
+            <div class="phone phone--back"><div class="phone__screen">
+              <div class="phone__status"><span class="phone__time">9:41</span><span class="phone__cam"></span><span class="phone__icons"><svg><use href="#i-signal"/></svg><svg><use href="#i-wifi"/></svg><svg><use href="#i-battery"/></svg></span></div>
+              <img lang="en" src="/assets/img/screens/en/todo_edit.jpg" width="720" height="1503" loading="lazy" alt="Editing a todo's due date, importance and completion">
+              <img lang="zh-CN" src="/assets/img/screens/zh/todo_edit.jpg" width="720" height="1503" loading="lazy" alt="编辑待办的截止日期、重要和完成状态">
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature feature--flip">
+        <div class="feature__copy reveal">
+          <h3 class="feature__title"><span lang="en">Scattered thoughts, written up</span><span lang="zh-CN">零碎想法，整理成篇</span></h3>
+          <ul class="ticks">
+            <li><span lang="en">Every Thought gets a clear title and a short summary.</span><span lang="zh-CN">每条想法都有清楚的标题和摘要。</span></li>
+            <li><span lang="en">A write-up with pros, risks, a recommendation and next steps.</span><span lang="zh-CN">附上正文、优点、风险、建议和下一步。</span></li>
+            <li><span lang="en">Sources you can open, right in the note.</span><span lang="zh-CN">参考来源列在文末，点开就能看。</span></li>
+            <li><span lang="en">Share any Thought as an image or a PDF.</span><span lang="zh-CN">可以分享为图片或 PDF。</span></li>
+          </ul>
+        </div>
+        <div class="feature__visual reveal">
+          <div class="duo">
+            <div class="phone"><div class="phone__screen">
+              <div class="phone__status"><span class="phone__time">9:41</span><span class="phone__cam"></span><span class="phone__icons"><svg><use href="#i-signal"/></svg><svg><use href="#i-wifi"/></svg><svg><use href="#i-battery"/></svg></span></div>
+              <img lang="en" src="/assets/img/screens/en/thought_read.jpg" width="720" height="1503" loading="lazy" alt="A researched Thought with a title, summary and write-up">
+              <img lang="zh-CN" src="/assets/img/screens/zh/thought_read.jpg" width="720" height="1503" loading="lazy" alt="一条研究过的想法：标题、摘要和正文">
+            </div></div>
+            <div class="phone phone--back"><div class="phone__screen">
+              <div class="phone__status"><span class="phone__time">9:41</span><span class="phone__cam"></span><span class="phone__icons"><svg><use href="#i-signal"/></svg><svg><use href="#i-wifi"/></svg><svg><use href="#i-battery"/></svg></span></div>
+              <img lang="en" src="/assets/img/screens/en/thought_sources.jpg" width="720" height="1503" loading="lazy" alt="Recommendation, next considerations and source links">
+              <img lang="zh-CN" src="/assets/img/screens/zh/thought_sources.jpg" width="720" height="1503" loading="lazy" alt="建议、下一步和来源链接">
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature__copy reveal">
+          <h3 class="feature__title"><span lang="en">Edit it like a document</span><span lang="zh-CN">像写文档一样修改</span></h3>
+          <ul class="ticks">
+            <li><span lang="en">Formatting shows as you type — no Markdown symbols to learn.</span><span lang="zh-CN">边写边显示排版效果，不用记 Markdown 符号。</span></li>
+            <li><span lang="en">Headings, bold, lists and quotes from the Format menu.</span><span lang="zh-CN">“格式”菜单里有标题、加粗、列表和引用。</span></li>
+            <li><span lang="en">Edits stay on your phone and never use AI.</span><span lang="zh-CN">修改只在本地进行，不调用 AI。</span></li>
+          </ul>
+        </div>
+        <div class="feature__visual reveal">
+          <div class="solo">
+            <div class="phone"><div class="phone__screen">
+              <div class="phone__status"><span class="phone__time">9:41</span><span class="phone__cam"></span><span class="phone__icons"><svg><use href="#i-signal"/></svg><svg><use href="#i-wifi"/></svg><svg><use href="#i-battery"/></svg></span></div>
+              <img lang="en" src="/assets/img/screens/en/thought_edit.jpg" width="720" height="1503" loading="lazy" alt="Editing a Thought with formatting shown live">
+              <img lang="zh-CN" src="/assets/img/screens/zh/thought_edit.jpg" width="720" height="1503" loading="lazy" alt="编辑想法，排版效果实时显示">
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature feature--flip">
+        <div class="feature__copy reveal">
+          <h3 class="feature__title"><span lang="en">Organized, lightly</span><span lang="zh-CN">轻量整理</span></h3>
+          <ul class="ticks">
+            <li><span lang="en">Pin the Thoughts you're working on.</span><span lang="zh-CN">把正在推进的想法置顶。</span></li>
+            <li><span lang="en">Put each Thought in one collection — no folder maze.</span><span lang="zh-CN">每条想法放进一个集合，不用层层建文件夹。</span></li>
+            <li><span lang="en">Sort by last modified or created, and search titles and text.</span><span lang="zh-CN">按最近修改或创建时间排序，标题和正文都能搜。</span></li>
+          </ul>
+        </div>
+        <div class="feature__visual reveal">
+          <div class="duo">
+            <div class="phone"><div class="phone__screen">
+              <div class="phone__status"><span class="phone__time">9:41</span><span class="phone__cam"></span><span class="phone__icons"><svg><use href="#i-signal"/></svg><svg><use href="#i-wifi"/></svg><svg><use href="#i-battery"/></svg></span></div>
+              <img lang="en" src="/assets/img/screens/en/home_thoughts.jpg" width="720" height="1503" loading="lazy" alt="Thoughts list with a pinned section and collections">
+              <img lang="zh-CN" src="/assets/img/screens/zh/home_thoughts.jpg" width="720" height="1503" loading="lazy" alt="想法列表：置顶和集合">
+            </div></div>
+            <div class="phone phone--back"><div class="phone__screen">
+              <div class="phone__status"><span class="phone__time">9:41</span><span class="phone__cam"></span><span class="phone__icons"><svg><use href="#i-signal"/></svg><svg><use href="#i-wifi"/></svg><svg><use href="#i-battery"/></svg></span></div>
+              <img lang="en" src="/assets/img/screens/en/collections.jpg" width="720" height="1503" loading="lazy" alt="Collections page with counts">
+              <img lang="zh-CN" src="/assets/img/screens/zh/collections.jpg" width="720" height="1503" loading="lazy" alt="集合页面和数量">
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature__copy reveal">
+          <h3 class="feature__title"><span lang="en">Your lists on the home screen</span><span lang="zh-CN">清单就在桌面上</span></h3>
+          <ul class="ticks">
+            <li><span lang="en">4×3 Todo and Thoughts widgets show what's next.</span><span lang="zh-CN">4×3 待办和想法小组件，一眼看到接下来要做的事。</span></li>
+            <li><span lang="en">Record or add a new item right from the widget.</span><span lang="zh-CN">在小组件上直接录音或新建。</span></li>
+            <li><span lang="en">Check off todos without opening the app.</span><span lang="zh-CN">不用打开 App 就能勾选完成待办。</span></li>
+          </ul>
+        </div>
+        <div class="feature__visual reveal">
+          <div class="widgets">
+            <img lang="en" class="widgets__card" src="/assets/img/widgets/en/todo.png" width="700" height="607" loading="lazy" alt="Todo widget with four upcoming todos, Record and Add buttons">
+            <img lang="zh-CN" class="widgets__card" src="/assets/img/widgets/zh/todo.png" width="700" height="607" loading="lazy" alt="待办小组件：四条待办、录音和新建按钮">
+            <img lang="en" class="widgets__card" src="/assets/img/widgets/en/thoughts.png" width="700" height="607" loading="lazy" alt="Thoughts widget with recent thoughts">
+            <img lang="zh-CN" class="widgets__card" src="/assets/img/widgets/zh/thoughts.png" width="700" height="607" loading="lazy" alt="想法小组件：最近的想法">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy -->
+  <section class="section section--forest" id="privacy">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span lang="en">Privacy</span><span lang="zh-CN">隐私</span></p>
+        <h2 class="title"><span lang="en">Your thoughts stay yours.</span><span lang="zh-CN">你的想法始终属于你。</span></h2>
+      </header>
+      <div class="cards">
+        <article class="card reveal">
+          <span class="badge badge--light"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+          <h3><span lang="en">Audio never leaves your phone</span><span lang="zh-CN">录音不离开手机</span></h3>
+          <p><span lang="en">Recording and transcription happen on the device and work offline. Choose Base for speed, or Premium (about 190 MB) for accuracy.</span><span lang="zh-CN">录音和转写都在手机上完成，转写可离线进行。可选 Base（更快、更小）或 Premium（约 190 MB，更准确）。</span></p>
+        </article>
+        <article class="card reveal">
+          <span class="badge badge--light"><svg class="icon" aria-hidden="true"><use href="#i-text"/></svg></span>
+          <h3><span lang="en">Only text goes out</span><span lang="zh-CN">只发送文字</span></h3>
+          <p><span lang="en">To sort and research a capture, only its transcript is sent to our server and AI providers. The result comes straight back to your phone.</span><span lang="zh-CN">为了分类和研究，只会把转写后的文字发送到我们的服务器和 AI 服务，结果直接回到你的手机。</span></p>
+        </article>
+        <article class="card reveal">
+          <span class="badge badge--light"><svg class="icon" aria-hidden="true"><use href="#i-cloud-off"/></svg></span>
+          <h3><span lang="en">No cloud notebook</span><span lang="zh-CN">没有云端笔记本</span></h3>
+          <p><span lang="en">Your Todos and Thoughts are stored on your phone, not in an online library.</span><span lang="zh-CN">待办和想法保存在你的手机上，而不是在线的资料库里。</span></p>
+        </article>
+        <article class="card reveal">
+          <span class="badge badge--light"><svg class="icon" aria-hidden="true"><use href="#i-pencil"/></svg></span>
+          <h3><span lang="en">Editing stays local</span><span lang="zh-CN">修改只在本地</span></h3>
+          <p><span lang="en">Changing, organizing or searching your notes never calls AI.</span><span lang="zh-CN">修改、整理和搜索都不会调用 AI。</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get started -->
+  <section class="section" id="start">
+    <div class="container container--narrow">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span lang="en">Get started</span><span lang="zh-CN">开始使用</span></p>
+        <h2 class="title"><span lang="en">Ready in a few minutes</span><span lang="zh-CN">几分钟就能上手</span></h2>
+      </header>
+      <ol class="group start reveal">
+        <li class="group__row">
+          <span class="num">1</span>
+          <div>
+            <h3><span lang="en">Download and install</span><span lang="zh-CN">下载并安装</span></h3>
+            <p><span lang="en">Get the APK from GitHub Releases. Your browser may ask you to allow installing apps.</span><span lang="zh-CN">从 GitHub Releases 下载 APK。浏览器可能会提示你允许安装应用。</span></p>
+          </div>
+        </li>
+        <li class="group__row">
+          <span class="num">2</span>
+          <div>
+            <h3><span lang="en">Sign in with Google</span><span lang="zh-CN">使用 Google 账号登录</span></h3>
+            <p><span lang="en">Your account keeps your settings and usage.</span><span lang="zh-CN">账号用来保存你的设置和用量。</span></p>
+          </div>
+        </li>
+        <li class="group__row">
+          <span class="num">3</span>
+          <div>
+            <h3><span lang="en">Pick a speech model</span><span lang="zh-CN">选择语音模型</span></h3>
+            <p><span lang="en">Base is faster and lighter; Premium is more accurate (about 190 MB). It downloads once.</span><span lang="zh-CN">Base 更快、更小；Premium 更准确（约 190 MB）。只需下载一次。</span></p>
+          </div>
+        </li>
+        <li class="group__row">
+          <span class="num">4</span>
+          <div>
+            <h3><span lang="en">Add KK&nbsp;Capture</span><span lang="zh-CN">添加 KK&nbsp;Capture</span></h3>
+            <p><span lang="en">Touch and hold an empty spot on your home screen → Widgets → KKKnockBoost → KK&nbsp;Capture.</span><span lang="zh-CN">长按桌面空白处 → 小组件 → KKKnockBoost → KK&nbsp;Capture。</span></p>
+          </div>
+        </li>
+        <li class="group__row">
+          <span class="num">5</span>
+          <div>
+            <h3><span lang="en">Tap and talk</span><span lang="zh-CN">点一下，开口说</span></h3>
+            <p><span lang="en">Next time your hands are full, tap once and say it.</span><span lang="zh-CN">下次手上正忙的时候，点一下说出来就好。</span></p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--white" id="faq">
+    <div class="container container--narrow">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span lang="en">FAQ</span><span lang="zh-CN">常见问题</span></p>
+        <h2 class="title"><span lang="en">Questions, answered</span><span lang="zh-CN">你可能想知道</span></h2>
+      </header>
+      <div class="group faq reveal">
+        <details class="faq__item">
+          <summary><span lang="en">Which phones does it work on?</span><span lang="zh-CN">支持哪些手机？</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <p><span lang="en">Android 7.0 or later. An iPhone version isn't available yet.</span><span lang="zh-CN">Android 7.0 及以上。暂时还没有 iPhone 版。</span></p>
+        </details>
+        <details class="faq__item">
+          <summary><span lang="en">How long can a recording be?</span><span lang="zh-CN">一次可以录多久？</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <p><span lang="en">Up to 60 seconds. It stops by itself at the limit, or when you tap again.</span><span lang="zh-CN">最长 60 秒。到时间会自动停止，也可以随时再点一下结束。</span></p>
+        </details>
+        <details class="faq__item">
+          <summary><span lang="en">Does it work offline?</span><span lang="zh-CN">离线能用吗？</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <p><span lang="en">Recording and transcription work offline. Sorting and research need a connection: captures are queued and retried automatically a few times, and if one still fails you can retry it from Recent Captures.</span><span lang="zh-CN">录音和转写可以离线完成，分类和研究需要联网。捕捉会先排队并自动重试几次；如果仍然失败，可以在“最近捕捉”里手动重试。</span></p>
+        </details>
+        <details class="faq__item">
+          <summary><span lang="en">Which languages does it understand?</span><span lang="zh-CN">支持哪些语言？</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <p><span lang="en">The app is in English and Chinese. Speech recognition detects the language automatically; the Premium model handles mixed Chinese and English better.</span><span lang="zh-CN">界面支持中文和英文。语音识别会自动判断语言，Premium 模型对中英混说的识别更好。</span></p>
+        </details>
+        <details class="faq__item">
+          <summary><span lang="en">What happens to what I say?</span><span lang="zh-CN">我说的话会怎么处理？</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <p><span lang="en">Each recording becomes one result: a Todo, or a Thought with research. If there isn't enough to work with, nothing is created. The audio itself stays on your phone.</span><span lang="zh-CN">每条录音生成一条结果：待办，或者带研究的想法。如果内容不足以整理，就不会生成任何条目。录音本身留在你的手机上。</span></p>
+        </details>
+        <details class="faq__item">
+          <summary><span lang="en">What is stored on your servers?</span><span lang="zh-CN">服务器上会保存什么？</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <p><span lang="en">Your account, profile settings and usage. Your Todos and Thoughts live on your phone. So that a retried request isn't processed twice, the server keeps each capture's result for up to 14 days.</span><span lang="zh-CN">账号、个人设置和用量信息。待办和想法保存在你的手机上。为了避免请求重试时被重复处理，服务器会把每条捕捉的处理结果保留最多 14 天。</span></p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final call to action -->
+  <section class="section cta">
+    <div class="container cta__inner reveal">
+      <img class="cta__icon" src="/assets/img/brand/icon-256.png" width="256" height="256" loading="lazy" alt="">
+      <h2 class="title"><span lang="en">Next time your hands are full,<br>just say it.</span><span lang="zh-CN">下次手上正忙，<br>说出来就好。</span></h2>
+      <a class="btn btn--primary btn--large" href="/download">
+        <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+        <span lang="en">Download for Android</span><span lang="zh-CN">下载 Android 版</span>
+      </a>
+      <p class="hero__note"><span lang="en">Android 7.0 or later · GitHub Releases</span><span lang="zh-CN">Android 7.0 及以上 · GitHub Releases</span></p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <p class="footer__brand">
+      <img src="/assets/img/brand/icon-128.png" width="24" height="24" alt="" loading="lazy">
+      <span>KK&nbsp;Knock</span>
+      <span class="footer__tag"><span lang="en">catching your bubbling thoughts</span><span lang="zh-CN">接住每一个冒出来的想法</span></span>
+    </p>
+    <p class="footer__links">
+      <a href="https://github.com/KKnock-Boost/Introduction" rel="noopener">GitHub</a>
+      <span>© 2026 KK&nbsp;Knock</span>
+    </p>
+  </div>
+</footer>
+</body>
+</html>
