@@ -2,7 +2,7 @@
 
 现行说明见 [README.md](../README.md)，下文是过程记录。
 
-- 最后更新：2026-09-23
+- 最后更新：2026-10-04
 - 项目目录：`advertisement/`（GitHub 公开仓库 `KKnock-Boost/Introduction`）
 
 ## 首版介绍页（2026-09-23）
@@ -40,7 +40,10 @@
 - 404 页正常，`.` 开头的路径返回 404。
 - 本机没有 Docker，镜像启动、nginx 配置和公网路由要在部署主机上验收。
 
+**下载链接（2026-10-04）**
+- 首页三处下载按钮改为直接打开 https://github.com/KKnock-Boost/Introduction/releases
+- `/download` 仍由部署环境变量 `INTRODUCTION_DOWNLOAD_URL` 决定；线上应设成同一个 Releases 地址，避免旧路径还停在“即将发布”。
+
 **待完成**
-- 正式 release 链接（由用户稍后提供）。
 - 部署主机上的 `compose up`。
 - Cloudflare 主机名路由。

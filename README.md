@@ -4,8 +4,10 @@ The public product page for KK Knock, the voice-first capture app for Android. I
 moments when typing is awkward, the KK Capture 1×1 widget, the main features, privacy, getting
 started and an FAQ. Every string is available in English and Chinese.
 
-Download buttons link to `/download`. The server redirects that path to the current GitHub
-Release.
+Download buttons open the public GitHub Releases page:
+https://github.com/KKnock-Boost/Introduction/releases
+
+`/download` still redirects there when the deployment sets `KK_DOWNLOAD_URL` to that address.
 
 ## What's here
 
@@ -35,12 +37,14 @@ There is no build step and no npm. The page loads nothing from other origins.
 
 ## Download link
 
-The deployed Nginx reads one environment value, `KK_DOWNLOAD_URL`.
+The page buttons go straight to https://github.com/KKnock-Boost/Introduction/releases
+
+The deployed Nginx still reads `KK_DOWNLOAD_URL` for anyone who opens `/download` directly.
 
 - If it is a plain `https://` URL, `/download` answers `302` to that URL with `Cache-Control: no-store`.
 - If it is empty or not a plain `https://` URL, `/download` serves `coming-soon.html`.
 
-The value belongs to the deployment environment. Do not hard-code it in the page.
+Set `KK_DOWNLOAD_URL` to the same Releases page so the old path matches the buttons.
 
 ## Deployment
 

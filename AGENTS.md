@@ -32,8 +32,10 @@ This is a **public** repository (`KKnock-Boost/Introduction`).
 - Don't claim pricing, iPhone availability, or hands-free / voice-assistant use. The in-car example stays
   framed as parked or safely stopped, with its safety note.
 - The product name on the page is **KK Knock**. The launcher label is `KKKnockBoost`, so setup steps use that label.
-- Download CTAs link to `/download`. Its target comes only from `KK_DOWNLOAD_URL` in the deployment
-  environment. Never hard-code a release URL in the page.
+- Download CTAs link to the public GitHub Releases page:
+  `https://github.com/KKnock-Boost/Introduction/releases`.
+- `/download` remains a server redirect. Its target comes from `KK_DOWNLOAD_URL` in the deployment
+  environment, and should be that same Releases page.
 
 **Serving:**
 - This repo is content only. There is no Dockerfile here; `../backend/compose.yaml` serves `site/`
